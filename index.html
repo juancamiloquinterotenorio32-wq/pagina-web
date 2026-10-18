@@ -1,11 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SportZone | Tienda Deportiva</title>
-    <link rel="stylesheet" href="css">
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 
@@ -16,6 +15,7 @@
         <nav>
             <a href="#inicio">Inicio</a>
             <a href="#camisetas">Camisetas</a>
+            <a href="#carrito">Carrito</a>
             <a href="#deportividad">Deportividad</a>
             <a href="#contacto">Contacto</a>
             <a href="#pagos">Pagos</a>
@@ -35,38 +35,26 @@
         </div>
     </section>
 
-    <!-- CAMISETAS -->
+    <!-- CAMISETAS (las tarjetas las crea script.js) -->
     <section class="seccion" id="camisetas">
         <h2>NUESTRAS <span>CAMISETAS</span></h2>
         <p class="descripcion">Encuentra tu estilo para cada partido.</p>
 
-        <div class="productos">
-
-            <article class="producto">
-                <div class="imagen camiseta-1">⚽</div>
-                <h3>Camiseta deportiva roja</h3>
-                <p>Diseño clásico y cómodo.</p>
-                <strong>$79.900 COP</strong>
-                <a href="#pagos" class="boton comprar">Comprar</a>
-            </article>
-
-            <article class="producto">
-                <div class="imagen camiseta-2">⚽</div>
-                <h3>Camiseta deportiva negra</h3>
-                <p>Estilo moderno para entrenar.</p>
-                <strong>$89.900 COP</strong>
-                <a href="#pagos" class="boton comprar">Comprar</a>
-            </article>
-
-            <article class="producto">
-                <div class="imagen camiseta-3">⚽</div>
-                <h3>Camiseta deportiva azul</h3>
-                <p>Comodidad para cada partido.</p>
-                <strong>$69.900 COP</strong>
-                <a href="#pagos" class="boton comprar">Comprar</a>
-            </article>
-
+        <div class="filtros">
+            <button class="boton btn-filtro activo" data-filtro="todas" aria-pressed="true">Todas</button>
+            <button class="boton btn-filtro" data-filtro="club" aria-pressed="false">Clubes</button>
+            <button class="boton btn-filtro" data-filtro="seleccion" aria-pressed="false">Selecciones</button>
         </div>
+
+        <div class="productos" id="products-container"></div>
+    </section>
+
+    <!-- CARRITO (lo llena script.js) -->
+    <section class="seccion" id="carrito">
+        <h2>TU <span>CARRITO</span></h2>
+        <div id="cart-items"></div>
+        <p class="cart-total">Total: <span id="total-price">$0</span></p>
+        <button class="boton" id="btn-checkout">PEDIR POR WHATSAPP</button>
     </section>
 
     <!-- DEPORTIVIDAD -->
@@ -145,468 +133,16 @@
     <footer>
         <a href="#inicio" class="logo">SPORT<span>ZONE</span></a>
         <p>Tu pasión, tu camiseta, tu equipo.</p>
+
+        <!-- Cambia tu_usuario y tu_pagina por los reales -->
+        <div class="redes">
+            <a href="https://www.instagram.com/tu_usuario" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/tu_pagina" target="_blank">Facebook</a>
+        </div>
+
         <p>&copy; 2026 SportZone. Todos los derechos reservados.</p>
     </footer>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #fafafa;
-    }
-    
-    .btn-instagram {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 30px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-instagram:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    }
-  </style>
-</head>
-<!-- Cambia 'tu_usuario' por tu nombre de usuario real -->
-  <a href="https://www.instagram.com/tu_usuario" target="_blank" class="btn-instagram">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-    </svg>
-     Instagram
-  </a>
-
-
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f0f2f5;
-    }
-    
-    .btn-facebook {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      background-color: #1877f2;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
-      transition: background-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .btn-facebook:hover {
-      background-color: #166fe5;
-      transform: translateY(-2px);
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Cambia 'tu_pagina' por el nombre de tu usuario o página de Facebook -->
-  <a href="https://www.facebook.com/tu_pagina" target="_blank" class="btn-facebook">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-    </svg>
-    Facebook
-  </a>
-<style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #f4f4f9;
-      margin: 0;
-    }
-    
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 12px 24px;
-      background-color: #25d366;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 30px;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-      transition: background-color 0.2s ease, transform 0.2s ease;
-    }
-
-    .btn-whatsapp:hover {
-      background-color: #1ea952;
-      transform: translateY(-2px);
-    }
-  </style>
-</head>
-<style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background-color: #f4f6f8;
-      color: #333;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 20px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    /* Sección de Productos */
-    .products-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 8px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 6px;
-      margin-bottom: 10px;
-    }
-
-    .product-card h3 {
-      font-size: 1.1rem;
-      margin-bottom: 5px;
-    }
-
-    .product-card .price {
-      color: #2e7d32;
-      font-weight: bold;
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-
-    .btn-add {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.2s;
-    }
-    .btn-add:hover {
-      background-color: #0056b3;
-    }
-
-    /* Sección del Carrito */
-    .cart-section {
-      background: white;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      height: fit-content;
-    }
-
-    .cart-section h2 {
-      margin-bottom: 15px;
-      border-bottom: 2px solid #eee;
-      padding-bottom: 8px;
-    }
-
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      border-bottom: 1px dashed #ddd;
-      padding-bottom: 8px;
-    }
-
-    .cart-item-info h4 {
-      font-size: 0.95rem;
-    }
-
-    .cart-item-info span {
-      font-size: 0.85rem;
-      color: #666;
-    }
-
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-qty {
-      background: #e0e0e0;
-      border: none;
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .btn-qty:hover {
-      background: #ccc;
-    }
-
-    .cart-total {
-      margin-top: 15px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-    }
-    .btn-checkout {
-      width: 100%;
-      background-color: #25d366;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: bold;
-      margin-top: 15px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      transition: background 0.2s;
-    }
-
-    .btn-checkout:hover {
-      background-color: #1ea952;
-    }
-
-    .empty-msg {
-      color: #888;
-      text-align: center;
-      margin: 20px 0;
-    }
-
-  </style>
-</head>
-<body>
-
-<div class="container">
-    <!-- Catálogo de Productos -->
-    <div class="products-grid" id="products-container"></div>
-
-    <!-- Carrito de Compras -->
-    <div class="cart-section">
-      <h2>Tu Carrito</h2>
-      <div id="cart-items">
-        <p class="empty-msg">El carrito está vacío</p>
-      </div>
-
-      <div class="cart-total">
-        <span>Total:</span>
-        <span id="total-price">$0.00</span>
-      </div>
-
-      <button class="btn-checkout" id="btn-checkout">
-        <a href="https://wa.me/571234567890?text=Hola,%20quisiera%20más%20información" target="_blank" class="btn-whatsapp">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.842-1.001zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-    </svg>
-     WhatsApp
-  </a>
-      </button>
-    </div>
-  </div>
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.842-1.001zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-    </svg>
-     WhatsApp
-  </a>
-      </button>
-    </div>
-  </div>
-  </style>
-</head>
-<body>
-
-  <script>
-    // 1. Datos de Productos de ejemplo
-    const products = [
-    { id: 1, name: "CAMISA DEL BARCELONA", price: 60.00, img: "https://w7.pngwing.com/pngs/187/688/png-transparent-fc-barcelona-t-shirt-real-madrid-c-f-jersey-kit-fc-barcelona-thumbnail.png" },
-    { id: 2, name: "CAMISA DEL BAYERN MUNICH", price: 70.00, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLqLM_fGlWa2N1LXb80PWD84aFxqA0osWSdbVJntirpA&s" },
-    { id: 3, name: "CAMISA DE LA JUVENTUS", price: 60.00, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQotUzzx69g87AclGL40YVnFgqK5EQNC_W0XQ4tQVcZ9Q&s" },
-    { id: 4, name: "CAMISA DEL LIVERPOOL", price: 70.00, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDtLaou00aETKOTohCVdq1Wd7M6_nGEf9_X7J-q9Hayw&s" },
-    { id: 5, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/83/281/png-transparent-real-madrid-c-f-adidas-jersey-football-adidas-tshirt-white-logo.png"},
-    { id: 6, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/566/333/png-transparent-inter-milan-serie-a-a-c-milan-jersey-kit-shirt-tshirt-blue-active-shirt.png"},
-    { id: 7, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/209/353/png-transparent-brazil-national-football-team-2018-world-cup-nike-jersey-nike-tshirt-jersey-active-shirt-thumbnail.png"},
-    { id: 8, name: "camisa del agefrex " , price: 21.11, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSF9G55c8qB00hyeztLilIbRZwTIi6HsNvq6EkOCkuMYg&s=10"},
-    { id: 9, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/343/108/png-transparent-arsenal-f-c-emirates-stadium-arsenal-stadium-2016-17-premier-league-t-shirt-arsenal.png"},
-    { id: 10, name: "camisa del agefrex " , price: 21.11, img: "https://e7.pngegg.com/pngimages/144/505/png-clipart-manchester-united-f-c-premier-league-old-trafford-f-c-united-of-manchester-jersey-premier-league-tshirt-logo.png"},
-    { id: 11, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/674/485/png-transparent-2018-world-cup-germany-national-football-team-jersey-adidas-shirt-adidas-tshirt-angle-white.png"},
-       { id: 12, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/914/955/png-transparent-2018-world-cup-colombia-national-football-team-t-shirt-argentina-national-football-team-jersey-t-shirt-tshirt-active-shirt-adidas-thumbnail.png"},
-        { id: 13, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/895/757/png-transparent-2018-world-cup-france-national-football-team-t-shirt-jersey-argentina-national-football-team-t-shirt-tshirt-logo-active-shirt.png"},
-    { id: 14, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/934/563/png-transparent-netherlands-national-football-team-t-shirt-nike-jersey-t-shirt-tshirt-orange-active-shirt.png"},
-     { id: 15, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/495/923/png-transparent-sports-fan-jersey-t-shirt-england-national-football-team-tennis-polo-england-jersey-tshirt-angle-white.png"},
-      { id: 16, name: "camisa del agefrex " , price: 21.11, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX9bSqx0rT0o0BvX9OvAiJu60SiGH210zxAnBjwpeg7Q&s=10"},
-       { id: 17, name: "camisa del agefrex " , price: 21.11, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDd4NXNV4x4pXzTBC2Y-YvUll4HNJnwl0PWh18CD5XNGZixiWSS4wPm5os&s=10"},
-        { id: 18, name: "camisa del agefrex " , price: 21.11, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwvZ0XxRbRT6AGLd6fIpTRsCVCcS0V9A0Sk5QsfQbqhbNj_K2v1l4FWtI&s=10"},
-       { id: 19, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/815/674/png-transparent-2018-world-cup-uruguay-national-football-team-t-shirt-jersey-t-shirt-tshirt-blue-sport-thumbnail.png"},
-          { id: 20, name: "camisa del agefrex " , price: 21.11, img: "https://w7.pngwing.com/pngs/151/674/png-transparent-mexico-national-football-team-2018-world-cup-copa-america-centenario-t-shirt-jersey-soccer-jerseys-tshirt-active-shirt-adidas-thumbnail.png"},
-];
-
-    // Estructura del carrito { id: cantidad }
-    let cart = {};
-
-    // 2. Renderizar los productos en la interfaz
-    function renderProducts() {
-      const container = document.getElementById('products-container');
-      container.innerHTML = products.map(prod => `
-        <div class="product-card">
-          <img src="${prod.img}" alt="${prod.name}">
-          <h3>${prod.name}</h3>
-          <p class="price">$${prod.price.toFixed(2)}</p>
-          <button class="btn-add" onclick="addToCart(${prod.id})">Agregar al carrito</button>
-        </div>
-      `).join('');
-    }
-
-    // 3. Funciones del Carrito
-    function addToCart(id) {
-      cart[id] = (cart[id] || 0) + 1;
-      updateCartUI();
-    }
-
-    function removeFromCart(id) {
-      if (cart[id]) {
-        cart[id]--;
-        if (cart[id] === 0) delete cart[id];
-      }
-      updateCartUI();
-    }
-
-    // 4. Actualizar la interfaz del carrito
-    function updateCartUI() {
-      const cartItemsContainer = document.getElementById('cart-items');
-      const totalPriceElement = document.getElementById('total-price');
-      
-      const itemIds = Object.keys(cart);
-
-      if (itemIds.length === 0) {
-        cartItemsContainer.innerHTML = '<p class="empty-msg">El carrito está vacío</p>';
-        totalPriceElement.innerText = '$0.00';
-        return;
-      }
-
-      let total = 0;
-      cartItemsContainer.innerHTML = itemIds.map(id => {
-        const product = products.find(p => p.id == id);
-        const quantity = cart[id];
-        const subtotal = product.price * quantity;
-        total += subtotal;
-
-        return `
-          <div class="cart-item">
-            <div class="cart-item-info">
-              <h4>${product.name}</h4>
-              <span>$${product.price.toFixed(2)} x ${quantity} = $${subtotal.toFixed(2)}</span>
-            </div>
-            <div class="quantity-controls">
-              <button class="btn-qty" onclick="removeFromCart(${product.id})">-</button>
-              <span>${quantity}</span>
-              <button class="btn-qty" onclick="addToCart(${product.id})">+</button>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      totalPriceElement.innerText = `$${total.toFixed(2)}`;
-    }
-
-    // 5. Enviar el Pedido por WhatsApp
-    document.getElementById('btn-checkout').addEventListener('click', () => {
-      const itemIds = Object.keys(cart);
-      if (itemIds.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-
-      // Configura aquí tu número de WhatsApp (con código de país sin +)
-      const phoneNumber = "573001234567"; 
-
-      let message = "¡Hola! Quisiera realizar el siguiente pedido:\n\n";
-      let total = 0;
-
-      itemIds.forEach(id => {
-        const product = products.find(p => p.id == id);
-        const quantity = cart[id];
-        const subtotal = product.price * quantity;
-        total += subtotal;
-        message += `• ${product.name} x${quantity} - $${subtotal.toFixed(2)}\n`;
-      });
-
-      message += `\n*Total a pagar: $${total.toFixed(2)}*`;
-
-      // Abrir enlace de WhatsApp
-      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      window.open(whatsappUrl, '_blank');
-    });
-
-    // Inicializar la app
-    renderProducts();
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
-  </script>
-</body>
-</html>
-
-</body>
-</html>
-</body>
-</html>
-</body>
-</html>
-  </style>
-</head>
-<body>
-</body>
-</html>
-
