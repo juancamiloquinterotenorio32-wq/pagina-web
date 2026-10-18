@@ -1,0 +1,337 @@
+
+/* CONFIGURACIÓN GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b0b0f;
+    color: white;
+}
+
+:root {
+    --verde: #b7ff00;
+    --fondo: #0b0b0f;
+    --gris: #181820;
+}
+
+span {
+    color: var(--verde);
+}
+
+/* ENCABEZADO */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 8%;
+    background: #101015;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #292930;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 900;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--verde);
+}
+
+/* INICIO */
+.hero {
+    min-height: 540px;
+    display: flex;
+    align-items: center;
+    padding: 70px 8%;
+    background:
+        radial-gradient(ellipse at 80% 50%, #304000 0%, transparent 45%),
+        linear-gradient(110deg, #111116, #202020);
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.etiqueta {
+    color: var(--verde);
+    font-weight: bold;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.05;
+    margin-bottom: 22px;
+}
+
+.hero-content > p:not(.etiqueta) {
+    color: #ccccd3;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 30px;
+}
+
+/* BOTONES */
+.boton {
+    display: inline-block;
+    border: none;
+    background: var(--verde);
+    color: #111;
+    padding: 14px 24px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.boton:hover {
+    background: white;
+    transform: translateY(-3px);
+}
+
+/* SECCIONES */
+.seccion {
+    padding: 75px 8%;
+    text-align: center;
+}
+
+.seccion h2,
+.deportividad h2,
+.pagos h2 {
+    font-size: clamp(27px, 4vw, 38px);
+    margin-bottom: 15px;
+}
+
+.descripcion {
+    color: #aaaab4;
+    margin-bottom: 40px;
+}
+
+/* PRODUCTOS */
+.productos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    margin-top: 35px;
+}
+
+.producto {
+    background: var(--gris);
+    border: 1px solid #292930;
+    padding: 18px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.producto:hover {
+    transform: translateY(-8px);
+    border-color: var(--verde);
+}
+
+.imagen {
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.camiseta-1 {
+    background: linear-gradient(135deg, #8c1010, #e74747);
+}
+
+.camiseta-2 {
+    background: linear-gradient(135deg, #161616, #444450);
+}
+
+.camiseta-3 {
+    background: linear-gradient(135deg, #064b9a, #29a4e8);
+}
+
+.producto h3 {
+    margin-bottom: 12px;
+}
+
+.producto p {
+    color: #b8b8c1;
+    margin-bottom: 15px;
+}
+
+.producto strong {
+    display: block;
+    color: var(--verde);
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.comprar {
+    width: 100%;
+}
+
+/* DEPORTIVIDAD */
+.deportividad {
+    padding: 75px 8%;
+    text-align: center;
+    background: #15151c;
+}
+
+.deportividad > p {
+    max-width: 650px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    color: #c7c7cf;
+}
+
+.beneficios {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.beneficios div {
+    background: #202027;
+    padding: 30px 20px;
+    border-radius: 10px;
+}
+
+.beneficios h3 {
+    margin-bottom: 15px;
+}
+
+.beneficios p {
+    color: #c7c7cf;
+    line-height: 1.7;
+}
+
+/* CONTACTO */
+.contacto form {
+    max-width: 550px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #383840;
+    background: #181820;
+    color: white;
+    font: inherit;
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--verde);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.nota {
+    color: #a5a5af;
+    font-size: 13px;
+    margin-top: 22px;
+    line-height: 1.6;
+}
+
+/* PAGOS */
+.pagos {
+    padding: 70px 8%;
+    text-align: center;
+    background: #15151c;
+}
+
+.pagos > p {
+    color: #c7c7cf;
+    margin-bottom: 30px;
+}
+
+.metodos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.metodos div {
+    padding: 20px;
+    border: 1px solid #383840;
+    border-radius: 8px;
+    background: #202027;
+}
+
+/* PIE DE PÁGINA */
+footer {
+    padding: 35px 8%;
+    text-align: center;
+    background: #08080b;
+    border-top: 1px solid #292930;
+}
+
+footer p {
+    color: #a5a5af;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+/* DISEÑO PARA CELULARES */
+@media (max-width: 800px) {
+    header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .productos,
+    .beneficios {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 450px;
+        padding: 55px 7%;
+    }
+
+    .seccion,
+    .deportividad,
+    .pagos {
+        padding: 55px 6%;
+    }
+}
