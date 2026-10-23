@@ -137,28 +137,24 @@ nav a:hover,
 }
 
 .seccion,
-.deportividad,
-.pagos {
+.deportividad {
     padding: 76px max(5vw, calc((100vw - var(--ancho)) / 2));
     text-align: center;
 }
 
-.seccion:nth-of-type(even),
-.pagos {
+.seccion:nth-of-type(even) {
     background: var(--fondo-suave);
 }
 
 .seccion h2,
-.deportividad h2,
-.pagos h2 {
+.deportividad h2 {
     margin: 0 0 8px;
     font-size: clamp(28px, 4vw, 40px);
     line-height: 1.15;
 }
 
 .descripcion,
-.deportividad > p,
-.pagos > p {
+.deportividad > p {
     color: var(--texto-suave);
 }
 
@@ -292,8 +288,7 @@ nav a:hover,
     font-weight: 700;
 }
 
-.beneficios,
-.metodos {
+.beneficios {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
@@ -301,8 +296,7 @@ nav a:hover,
     margin: 32px auto 0;
 }
 
-.beneficios > div,
-.metodos > div {
+.beneficios > div {
     padding: 22px;
     border: 1px solid var(--borde);
     border-radius: 10px;
@@ -395,8 +389,7 @@ footer .logo {
     }
 
     .seccion,
-    .deportividad,
-    .pagos {
+    .deportividad {
         padding: 58px 5vw;
     }
 
@@ -413,8 +406,7 @@ footer .logo {
         height: 190px;
     }
 
-    .beneficios,
-    .metodos {
+    .beneficios {
         grid-template-columns: 1fr;
         gap: 12px;
     }
@@ -427,5 +419,74 @@ footer .logo {
 
     .producto img {
         height: 240px;
+    }
+}
+
+/* ===== EFECTO MELO PARA LAS CAMISETAS ===== */
+
+.producto {
+    position: relative;
+    transition: transform 300ms cubic-bezier(.2, .8, .2, 1),
+                border-color 300ms ease,
+                box-shadow 300ms ease;
+}
+
+.producto::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(183, 243, 74, 0.18), transparent 65%);
+    opacity: 0;
+    transition: opacity 300ms ease;
+    pointer-events: none;
+}
+
+.producto img {
+    position: relative;
+    transition: transform 350ms cubic-bezier(.2, .8, .2, 1),
+                filter 350ms ease;
+}
+
+.producto h3,
+.producto strong,
+.producto .comprar {
+    position: relative;
+}
+
+@media (hover: hover) {
+    .producto:hover {
+        transform: translateY(-8px);
+        border-color: var(--verde);
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45),
+                    0 0 22px rgba(183, 243, 74, 0.22);
+    }
+
+    .producto:hover::before {
+        opacity: 1;
+    }
+
+    .producto:hover img {
+        transform: scale(1.1) rotate(-2deg);
+        filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.3));
+    }
+
+    .producto:hover .comprar {
+        box-shadow: 0 0 16px rgba(183, 243, 74, 0.45);
+    }
+}
+
+.producto .comprar:active {
+    transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .producto,
+    .producto img {
+        transition: none;
+    }
+
+    .producto:hover,
+    .producto:hover img {
+        transform: none;
     }
 }

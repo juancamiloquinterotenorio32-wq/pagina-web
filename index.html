@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; form-action 'self' mailto:; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>SportZone | Tienda Deportiva</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
@@ -18,7 +21,6 @@
             <a href="#carrito">Carrito</a>
             <a href="#deportividad">Deportividad</a>
             <a href="#contacto">Contacto</a>
-            <a href="#pagos">Pagos</a>
         </nav>
     </header>
 
@@ -109,23 +111,6 @@
 
         <p class="nota">
             Cambia el correo de ejemplo por el de tu negocio.
-        </p>
-    </section>
-
-    <!-- PAGOS -->
-    <section class="pagos" id="pagos">
-        <h2>FORMAS DE <span>PAGO</span></h2>
-        <p>Elige cómo te gustaría pagar tu compra.</p>
-
-        <div class="metodos">
-            <div>💳 Tarjeta débito o crédito</div>
-            <div>📱 Nequi o Daviplata</div>
-            <div>🏦 Transferencia bancaria</div>
-        </div>
-
-        <p class="nota">
-            Los métodos anteriores son informativos.
-            Para recibir pagos reales, configura una pasarela de pagos.
         </p>
     </section>
 

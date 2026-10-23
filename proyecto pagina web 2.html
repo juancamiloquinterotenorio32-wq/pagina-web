@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; font-src 'self'; connect-src 'self'; form-action 'self' mailto:; base-uri 'self'; object-src 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>SportZone | Tienda Deportiva</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <!-- ENCABEZADO -->
+    <header>
+        <a href="#inicio" class="logo">SPORT<span>ZONE</span></a>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#camisetas">Camisetas</a>
+            <a href="#carrito">Carrito</a>
+            <a href="#deportividad">Deportividad</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!-- INICIO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <p class="etiqueta">VIVE TU PASIÓN</p>
+            <h1>VISTE COMO<br>UNA <span>LEYENDA</span></h1>
+            <p>
+                Descubre camisetas de fútbol y ropa deportiva
+                para llevar tu pasión a otro nivel.
+            </p>
+            <a href="#camisetas" class="boton">VER CAMISETAS</a>
+        </div>
+    </section>
+
+    <!-- CAMISETAS (las tarjetas las crea script.js) -->
+    <section class="seccion" id="camisetas">
+        <h2>NUESTRAS <span>CAMISETAS</span></h2>
+        <p class="descripcion">Encuentra tu estilo para cada partido.</p>
+
+        <div class="filtros">
+            <button class="boton btn-filtro activo" data-filtro="todas" aria-pressed="true">Todas</button>
+            <button class="boton btn-filtro" data-filtro="club" aria-pressed="false">Clubes</button>
+            <button class="boton btn-filtro" data-filtro="seleccion" aria-pressed="false">Selecciones</button>
+        </div>
+
+        <div class="productos" id="products-container"></div>
+    </section>
+
+    <!-- CARRITO (lo llena script.js) -->
+    <section class="seccion" id="carrito">
+        <h2>TU <span>CARRITO</span></h2>
+        <div id="cart-items"></div>
+        <p class="cart-total">Total: <span id="total-price">$0</span></p>
+        <button class="boton" id="btn-checkout">PEDIR POR WHATSAPP</button>
+    </section>
+
+    <!-- DEPORTIVIDAD -->
+    <section class="deportividad" id="deportividad">
+        <h2>LA PASIÓN NOS <span>UNE</span></h2>
+        <p>
+            Entrena con confianza, juega con pasión y demuestra
+            tu espíritu deportivo en cada momento.
+        </p>
+
+        <div class="beneficios">
+            <div>
+                <h3>⚡ Rendimiento</h3>
+                <p>Ropa pensada para acompañar tu actividad deportiva.</p>
+            </div>
+
+            <div>
+                <h3>👕 Estilo</h3>
+                <p>Diseños para entrenar y disfrutar del fútbol.</p>
+            </div>
+
+            <div>
+                <h3>🏆 Pasión</h3>
+                <p>Vive el deporte con energía y personalidad.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="seccion contacto" id="contacto">
+        <h2>CONTÁCT<span>ANOS</span></h2>
+        <p class="descripcion">
+            ¿Tienes preguntas? Escríbenos.
+        </p>
+
+        <form action="mailto:contacto@tutiendadeportiva.com"
+              method="post" enctype="text/plain">
+            <input type="text" name="nombre"
+                   placeholder="Tu nombre" required>
+
+            <input type="email" name="correo"
+                   placeholder="Tu correo electrónico" required>
+
+            <textarea name="mensaje"
+                      placeholder="Escribe tu mensaje"
+                      rows="5" required></textarea>
+
+            <button type="submit" class="boton">
+                ENVIAR MENSAJE
+            </button>
+        </form>
+
+        <p class="nota">
+            Cambia el correo de ejemplo por el de tu negocio.
+        </p>
+    </section>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <a href="#inicio" class="logo">SPORT<span>ZONE</span></a>
+        <p>Tu pasión, tu camiseta, tu equipo.</p>
+
+        <!-- Cambia tu_usuario y tu_pagina por los reales -->
+        <div class="redes">
+            <a href="https://www.instagram.com/tu_usuario" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/tu_pagina" target="_blank">Facebook</a>
+        </div>
+
+        <p>&copy; 2026 SportZone. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
